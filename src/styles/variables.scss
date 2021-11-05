@@ -1,6 +1,18 @@
-body, body.light{
-    --background-prime: white;
-    --background-sec: gray;
-    --color-prime: blue;
-    --color-sec:green;
+
+$theme-prime:linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+$theme-second:  rgb(250, 217, 29);
+$text-prime: white;
+$text-second: rgba(15, 15, 170, 0.829);
+$border-prime:1px solid white;
+$border-second:1px solid #a1c4fd;
+$background-blend-mode:normal,color-burn;
+:root{
+    --theme-prime:#{$theme-prime};
+    --theme-second:#{$theme-second};
+    --text-prime:#{$text-prime};
+    --text-second:#{$text-second};
+    --border-prime:#{$border-prime};
+    --border-second:#{$border-second};
+    --background-blend-mode:#{$background-blend-mode};
+
 }

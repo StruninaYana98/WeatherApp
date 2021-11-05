@@ -7,10 +7,17 @@
     display: flex;
     align-items: center;
 }
+.logo{
+    width: 4rem;
+    height: 4rem;
+}
 .appName{
     font-size: 2rem;
-    color: var(--color-prime);
+    font-weight: 600;
+    color: var(--text-second);
+    margin:0.5rem;
 }
 .settings{
     display: flex;
+    align-items: center;
 }
