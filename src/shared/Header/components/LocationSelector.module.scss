@@ -1,0 +1,41 @@
+.selectDropdown{
+    position: relative;
+    margin: 1rem;
+}
+.selected{
+    height: 1.5rem;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 0.2rem;
+   
+}
+.options{
+    list-style: none;
+    padding: 0;
+    margin: 0.2rem 0;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 0.2rem;
+
+    .option{
+        padding: 0.5rem;
+    }
+
+    &.closed{
+        height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+    
+        
+    }
+    &.expanded{
+        transition: all 0.2s ease-in-out;
+        height: auto;
+        max-height: 8rem;
+        opacity: 1;
+        overflow-y: auto;
+    }
+}

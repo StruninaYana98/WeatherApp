@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.appNameWrapper{
+    display: flex;
+    align-items: center;
+}
+.appName{
+    font-size: 2rem;
+    color: var(--color-prime);
+}
+.settings{
+    display: flex;
+}

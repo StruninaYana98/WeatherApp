@@ -1,0 +1,35 @@
+.themeSwither{
+    position: relative;
+    width: 3rem;
+    height: 1.5rem;
+    cursor: pointer;
+    margin: 1rem;
+    &::before{
+        content: "";
+        position: absolute;
+        z-index: 1;
+        width: 3rem;
+        height: 1.5rem;
+        border: 1px black solid;
+        background-color: white;
+    }
+
+    &:after{
+        content: "";
+        position: absolute;
+        z-index: 2;
+        width: 1.5rem;
+        height: 1.5rem;
+        left: 0;
+        right: auto;
+        background-color: blue;
+        border: 1px black solid;
+        transition: all 0.2s ease-in-out;
+    }
+    &:checked{
+        &:after{
+            transform: translateX(1.5rem);
+            background-color: black;
+        }
+    }
+}
