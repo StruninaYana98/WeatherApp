@@ -8,7 +8,6 @@
     border: var(--border-second);
     border-radius: 0.5rem;
     padding:0 0.5rem;
-    color: var(--text-second);
    
 }
 .options{
@@ -28,7 +27,7 @@
         margin:0 0.2rem;
         border-bottom: var(--border-prime);
         cursor: pointer;
-        color: var(--text-prime);
+        color: var(--theme-base);
     }
 
     &.closed{

@@ -14,16 +14,16 @@
     p{
         margin:0.1rem 0;
         font-size: 1rem;
-        color: var(--text-prime);
+        color: var(--theme-base);
     }
 
     .day{
-        color:var(--text-second);
+        color:var(--theme-accent);
         font-size: 1.5rem;
     }
 
     .dayTemperature{
-        color:var(--text-second);
+        color:var(--theme-accent);
         font-size: 1.5rem;
     }
 

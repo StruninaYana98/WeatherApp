@@ -7,6 +7,7 @@ import { ReactComponent as Temperature } from './parameters/temperature.svg';
 import { ReactComponent as Pressure } from './parameters/pressure.svg';
 import { ReactComponent as Precipitation } from './parameters/precipitation.svg';
 import { ReactComponent as Wind } from './parameters/wind.svg';
+import {ReactComponent as Cancel} from './global/cancel.svg';
 
 interface Props {
     scope: string;
@@ -17,6 +18,13 @@ interface Props {
 export const GlobalSvgSelector = ({ scope, name }: Props) => {
 
     switch (scope) {
+        case "global":
+            switch (name) {
+                case "cancel":
+                    return <Cancel/>
+                default:
+                    return null;
+            }
         case "weather":
             switch (name) {
                 case "day":
