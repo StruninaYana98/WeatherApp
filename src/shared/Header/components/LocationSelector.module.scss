@@ -28,6 +28,12 @@
         border-bottom: var(--border-prime);
         cursor: pointer;
         color: var(--theme-base);
+        transition: color 0.2s;
+
+        &:hover{
+            color: var(--theme-accent);
+            transition: color 0.2s;
+        }
     }
 
     &.closed{
