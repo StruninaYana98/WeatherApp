@@ -7,7 +7,7 @@ import { Header } from './shared/Header/Header';
 
 function App() {
   return (
-    <div>
+    <div className="appContainer">
       <Header />
       <Routes >
         <Route path="/" element={<Home />} />

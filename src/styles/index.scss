@@ -3,4 +3,10 @@
 @import 'variables.scss';
 body{
     font-family: 'Rubik', sans-serif;
+    color: rgb(114, 114, 114);
+}
+.appContainer{
+    max-width: 1440px;
+    padding: 3rem 2rem;
+    margin:auto;
 }

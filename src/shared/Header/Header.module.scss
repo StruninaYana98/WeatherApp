@@ -10,6 +10,9 @@
 .logo{
     width: 4rem;
     height: 4rem;
+    object{
+        width: 4rem;
+    }
 }
 .appName{
     font-size: 2rem;
@@ -20,4 +23,5 @@
 .settings{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }

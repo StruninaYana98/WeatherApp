@@ -1,0 +1,43 @@
+.dayInfoWrapper{
+    border:var(--border-second);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    flex-grow: 2;
+}
+
+.parameter{
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    
+    
+
+    .nameWrapper{
+        display: flex;
+        align-items: center;
+    }
+
+    .logo{
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        color: var(--text-second);
+    }
+
+    .name{
+        color: var(--text-second);
+        margin: 0 1rem 0 0;
+    }
+
+
+    @media screen and (max-width: 500px){
+        display: block;
+
+        .description{
+            margin-left: 2.5rem;
+            margin-top:0;
+        }
+    }
+ 
+}

@@ -1,21 +1,26 @@
 .thisDayWrapper{
-    backdrop-filter: blur(20px) saturate(87%);;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.055);
     border-radius: 0.5rem;
     border: var(--border-prime);
     background-image: var(--theme-prime);
     background-blend-mode: var(--background-blend-mode);
-    max-width: 15rem;
+    margin-right: 2rem;
+    flex-grow: 1;
     padding: 2rem;
+    @media screen and (max-width: 768px){
+        margin-right:0;
+        margin-bottom: 2rem;
+    }
 }
 
 .dayWrapper{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: flex-end;
+    margin-bottom: 1rem;
     
 
     .degrees{
-        grid-column: 1;
         font-size: 5rem;
         line-height: 5rem;
         margin: 0;
@@ -23,17 +28,18 @@
         font-weight: 500;
     }
     .day{
-        grid-column: 1;
         margin: 0;
         font-size: 2rem;
         line-height: 2rem;
         color: var(--text-second);
     }
     .icon{
-        grid-column: 2;
-        grid-row: 1/span 2;
-        width: 3rem;
-        margin:0 auto;
+        width: 4rem;
+        height: 4rem;
+        object{
+            width: 4rem;
+            height: 4rem;
+        }
     }
 
    

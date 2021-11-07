@@ -1,5 +1,12 @@
 import React from 'react';
-import  Day  from './weather/day.svg';
+import Day from './weather/day.svg';
+import Cloudy from './weather/cloudy.svg';
+import LightRain from './weather/light-rain.svg';
+import Rain from './weather/rain.svg';
+import { ReactComponent as Temperature } from './parameters/temperature.svg';
+import { ReactComponent as Pressure } from './parameters/pressure.svg';
+import { ReactComponent as Precipitation } from './parameters/precipitation.svg';
+import { ReactComponent as Wind } from './parameters/wind.svg';
 
 interface Props {
     scope: string;
@@ -13,7 +20,27 @@ export const GlobalSvgSelector = ({ scope, name }: Props) => {
         case "weather":
             switch (name) {
                 case "day":
-                    return<object type="image/svg+xml" data={Day}>svg-animation</object>
+                    return <object type="image/svg+xml" data={Day}>svg-animation</object>
+                case "cloudy":
+                    return <object type="image/svg+xml" data={Cloudy}>svg-animation</object>
+                case "light-rain":
+                    return <object type="image/svg+xml" data={LightRain}>svg-animation</object>
+                case "rain":
+                    return <object type="image/svg+xml" data={Rain}>svg-animation</object>
+                default:
+                    return null;
+            }
+        case "parameters":
+            switch (name) {
+                case "temperature":
+                    return <Temperature />
+                case "pressure":
+                    return <Pressure />
+                case "precipitation":
+                    return <Precipitation />
+                case "wind":
+                    return <Wind />
+
                 default:
                     return null;
             }

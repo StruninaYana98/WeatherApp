@@ -1,0 +1,8 @@
+.daysWrapper{
+    display: flex;
+    overflow-x: auto;
+
+    & > *{
+        flex-grow: 1;
+    }
+}
