@@ -19,7 +19,7 @@ export const Header = (props: Props) => {
             </div>
             <div className={s.settings}>
                 <div className={s.theme}><ThemeSwither/></div>
-                <div className={s.location}><LocationSelector selected="erfjer" options={["москва", "карснодар", "вологда"]} /></div>
+                <div className={s.location}><LocationSelector selected="Санкт-Петербург" options={["москва", "карснодар", "вологда"]} /></div>
             </div>
 
         </header>

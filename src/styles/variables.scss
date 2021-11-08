@@ -41,7 +41,6 @@ $dark-body-color: rgb(172, 172, 172);
     --dark-body-color:#{$dark-body-color};
 
 
-
     //current
     --theme-base:var(--light-theme-base);
     --theme-prime:var(--light-theme-prime);
@@ -49,7 +48,7 @@ $dark-body-color: rgb(172, 172, 172);
     --theme-accent:var(--light-theme-accent);
     --border-prime:var(--light-border-prime);
     --border-second:var(--light-border-second);
-    --body-color:var(var(--light-body-color));
+    --body-color:var(--light-body-color);
 
     //general
     --background-blend-mode:#{$background-blend-mode};
