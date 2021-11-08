@@ -8,6 +8,8 @@ import { ReactComponent as Pressure } from './parameters/pressure.svg';
 import { ReactComponent as Precipitation } from './parameters/precipitation.svg';
 import { ReactComponent as Wind } from './parameters/wind.svg';
 import {ReactComponent as Cancel} from './global/cancel.svg';
+import {ReactComponent as AppIcon} from './global/app-icon.svg';
+import {ReactComponent as Location} from './global/location.svg';
 
 interface Props {
     scope: string;
@@ -22,6 +24,10 @@ export const GlobalSvgSelector = ({ scope, name }: Props) => {
             switch (name) {
                 case "cancel":
                     return <Cancel/>
+                case "app-icon":
+                    return <AppIcon/>
+                case "location":
+                    return <Location/>
                 default:
                     return null;
             }

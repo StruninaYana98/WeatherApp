@@ -4,10 +4,12 @@ import App from './App';
 import './styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './providers/ThemeProvider';
+import { Header } from './shared/Header/Header';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
+        <Header/>
         <App />
       </ThemeProvider>
     </BrowserRouter>

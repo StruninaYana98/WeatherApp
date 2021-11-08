@@ -3,7 +3,7 @@
     width: 3rem;
     height:calc( 1.5rem + 2px);
     cursor: pointer;
-    margin: 1rem;
+    margin: 0.2rem;
     &::before{
         content: "";
         position: absolute;
@@ -42,6 +42,31 @@
             transform: translateX( calc(1.5rem - 2px) );
             content: "\263D";
             
+        }
+    }
+
+    @media screen and (max-width:550px) {
+        width:calc( 1.5rem - 2px);
+        height: calc( 1.5rem - 2px);
+        &::before{
+            width: calc( 1.5rem + 2px);
+            top: -2px;
+            left: -2px;
+            
+        }
+        &:after{
+            top: -1px;
+            left: -1px;
+        }
+
+        &:checked{
+
+        
+            &:after{
+                transform: none;
+                content: "\263D";
+                
+            }
         }
     }
 }

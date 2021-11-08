@@ -8,7 +8,6 @@ import { Header } from './shared/Header/Header';
 function App() {
   return (
     <div className="appContainer">
-      <Header />
       <Routes >
         <Route path="/" element={<Home />} />
         <Route path="/month-statistic" element={<MonthStatistic />} />

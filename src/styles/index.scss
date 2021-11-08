@@ -11,11 +11,11 @@ input{
 }
 .appContainer{
     max-width: 1440px;
-    padding: 3rem 2rem;
+    padding:0rem 2rem 3rem;
     margin:auto;
 
     @media screen and (max-width:768px) {
-        padding: 1rem;
+        padding: 0rem 1rem 3rem;
     }
 }
 .button-second{
@@ -35,10 +35,17 @@ input{
     transition: background-size .2s, color .5s;
     background-position: 50% 50%;
 
-    &:hover {
+    @media (hover:hover){
+        &:hover{
+            background-size: 0px 0px;
+            color: var(--theme-base);
+        }
+    }
+
+    &.active {
         background-size: 0px 0px;
         color: var(--theme-base);
-      }
+    }
 }
 .button-prime{
     @extend .button-second;

@@ -1,7 +1,20 @@
 .header{
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    position: sticky;
+    top:0;
+    background-color: var(--theme-base);
+    z-index: 100;
+    max-width: 1440px;
+    padding: 0.1rem 2rem;
+    margin:auto;
+    margin-top: 3rem;
+
+
+    @media screen and (max-width:768px) {
+        margin-top: 1rem;
+        padding:0.1rem 1rem;
+    }
 }
 .appNameWrapper{
     display: flex;
@@ -10,18 +23,57 @@
 .logo{
     width: 4rem;
     height: 4rem;
-    object{
-        width: 4rem;
+    color: var(--theme-second);
+
+    @media screen and (max-width:768px) {
+        width: 3rem;
+        height: 3rem;
     }
+
 }
 .appName{
     font-size: 2rem;
     font-weight: 600;
     color: var(--theme-accent);
     margin:0.5rem;
+    @media screen and (max-width:768px) {
+        font-size: 1.2rem;
+    }
 }
 .settings{
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    .locationIcon{
+        display: none;
+        width: calc( 1.5rem + 3px);
+        height: calc( 1.5rem + 3px);
+        padding: 0.2rem;
+        border-radius: 0.5rem;
+        box-sizing: border-box;
+        margin-left: 0.5rem;
+    }
+
+    @media screen and (max-width:550px) {
+
+        .locationIcon{
+            display: block;
+        }
+
+        .location{
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            background-color: var(--theme-base);
+            bottom: -4rem;
+
+            &.expanded{
+                display: block;
+            }
+        }
+        
+    
+    }
 }
