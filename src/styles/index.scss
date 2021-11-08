@@ -3,15 +3,20 @@
 @import 'variables.scss';
 body{
     font-family: 'Rubik', sans-serif;
-    color: rgb(114, 114, 114);
+    color: var(--body-color);
+    background-color: var(--theme-base);
 }
 input{
-    color: rgb(114, 114, 114);
+    color: inherit;
 }
 .appContainer{
     max-width: 1440px;
     padding: 3rem 2rem;
     margin:auto;
+
+    @media screen and (max-width:768px) {
+        padding: 1rem;
+    }
 }
 .button-second{
     position: relative;
@@ -23,7 +28,7 @@ input{
     background-color: var(--theme-second);
     font-size: 1rem;
     padding:0.5rem 1rem;
-    background-image:linear-gradient(white, white);
+    background-image:linear-gradient(var(--theme-base),var(--theme-base));
     background-size: 100% 100%;
     cursor: pointer;
     background-repeat: no-repeat;
@@ -32,7 +37,7 @@ input{
 
     &:hover {
         background-size: 0px 0px;
-        color: #fff;
+        color: var(--theme-base);
       }
 }
 .button-prime{

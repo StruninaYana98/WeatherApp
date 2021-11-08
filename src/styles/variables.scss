@@ -1,18 +1,57 @@
-
-$theme-prime:linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-$theme-second: orange; 
-$theme-base: white;
-$theme-accent: rgba(15, 15, 170, 0.829);
-$border-prime:1px solid white;
-$border-second:1px solid #a1c4fd;
 $background-blend-mode:normal,color-burn;
+
+//light theme variables
+$light-theme-base: white;
+$light-theme-prime:linear-gradient(120deg, #a1c4fcd3 0%, #8ed8fab9 100%);
+$light-theme-second: orange; 
+$light-theme-accent: rgba(15, 15, 170, 0.829);
+$light-border-prime:1px solid white;
+$light-border-second:1px solid #a1c4fd;
+$light-body-color: rgb(114, 114, 114);
+
+
+//dark theme variables
+$dark-theme-base: rgb(22, 26, 44);
+$dark-theme-prime:linear-gradient(120deg, rgba(255, 255, 255, 0.541) 0%, rgba(255, 255, 255, 0.37) 100%);
+$dark-theme-second: orange; 
+$dark-theme-accent:white;
+$dark-border-prime:1px solid rgba(209, 213, 219, 0.3);
+$dark-border-second:1px solid #ffffff9d;
+$dark-body-color: rgb(172, 172, 172);
+
 :root{
-    --theme-prime:#{$theme-prime};
-    --theme-second:#{$theme-second};
-    --theme-base:#{$theme-base};
-    --theme-accent:#{$theme-accent};
-    --border-prime:#{$border-prime};
-    --border-second:#{$border-second};
+    //light
+    --light-theme-base:#{$light-theme-base};
+    --light-theme-prime:#{$light-theme-prime};
+    --light-theme-second:#{$light-theme-second};
+    --light-theme-accent:#{$light-theme-accent};
+    --light-border-prime:#{$light-border-prime};
+    --light-border-second:#{$light-border-second};
+    --light-body-color:#{$light-body-color};
+
+
+
+    //dark
+    --dark-theme-base:#{$dark-theme-base};
+    --dark-theme-prime:#{$dark-theme-prime};
+    --dark-theme-second:#{$dark-theme-second};
+    --dark-theme-accent:#{$dark-theme-accent};
+    --dark-border-prime:#{$dark-border-prime};
+    --dark-border-second:#{$dark-border-second};
+    --dark-body-color:#{$dark-body-color};
+
+
+
+    //current
+    --theme-base:var(--light-theme-base);
+    --theme-prime:var(--light-theme-prime);
+    --theme-second:var(--light-theme-second);
+    --theme-accent:var(--light-theme-accent);
+    --border-prime:var(--light-border-prime);
+    --border-second:var(--light-border-second);
+    --body-color:var(var(--light-body-color));
+
+    //general
     --background-blend-mode:#{$background-blend-mode};
 
 }
