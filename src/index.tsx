@@ -5,12 +5,16 @@ import './styles/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { Header } from './shared/Header/Header';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
+        <Provider store={store}>
         <Header/>
         <App />
+        </Provider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,

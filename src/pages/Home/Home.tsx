@@ -1,22 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { CurrentWeatherService } from '../../services/CurrentWeatherService';
+import { AppDispatch } from '../../store/store';
 import { Days } from './components/Days/Days';
 import { ThisDay } from './components/ThisDay/ThisDay';
 import { ThisDayInfo } from './components/ThisDayInfo/ThisDayInfo';
 import s from "./Home.module.scss";
 
-interface Props{
+interface Props {
 
 }
 
-export const Home = (props: Props) =>{
+export const Home = (props: Props) => {
+
+    const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        dispatch(CurrentWeatherService.getCurrentWeather(498817));
+    })
     return (
         <div className={s.home}>
             <div className={s.currentDay}>
-            <ThisDay/>
-            <ThisDayInfo/>
+                <ThisDay />
+                <ThisDayInfo />
             </div>
-            <Days/>
-
+            <Days />
         </div>
     )
 }
