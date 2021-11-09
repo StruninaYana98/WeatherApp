@@ -13,7 +13,6 @@ export const Header = (props: Props) => {
     const [expanded, setExpanded] = React.useState(false);
 
     function toggleLocationDropdown(){
-        console.log(expanded)
         if(expanded){
             setExpanded(false);
         }else{
