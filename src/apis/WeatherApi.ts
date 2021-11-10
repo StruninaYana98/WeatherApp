@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export  class  WeatherApi {
-  static weatherApi = axios.create({
+  private static weatherApi = axios.create({
     baseURL: "https://api.openweathermap.org/data/2.5/",
   });
 

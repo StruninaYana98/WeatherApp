@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { LocationApi } from '../../apis/LocationApi';
 import { WeatherService } from '../../services/WeatherService';
 import { AppDispatch } from '../../store/store';
 import { Days } from './components/Days/Days';
@@ -17,6 +18,7 @@ export const Home = (props: Props) => {
 
     useEffect(() => {
         dispatch(WeatherService.getCurrentWeather(498817));
+        LocationApi.getCountryCities();
     })
     
     return (

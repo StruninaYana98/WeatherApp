@@ -14,7 +14,7 @@ export const ThisDay = (props: Props) => {
         <div className={s.thisDayWrapper}>
             <div className={s.dayWrapper}>
                 <div>
-                    <p className={s.degrees}>{weather.main?.temp}&#176;</p>
+                    <p className={s.degrees}>{weather.temperature}</p>
                     <p className={s.day}>сегодня</p>
                 </div>
                 <div className={s.icon}><GlobalSvgSelector scope="weather" name="day" /></div>

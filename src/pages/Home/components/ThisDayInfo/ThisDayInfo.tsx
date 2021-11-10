@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { GlobalSvgSelector } from '../../../../assets/svg/GlobalSvgSelector';
+import { RootState } from '../../../../store/store';
 import s from "./ThisDayInfo.module.scss";
 
 interface Props {
@@ -7,6 +9,7 @@ interface Props {
 }
 
 export const ThisDayInfo = (props: Props) => {
+    const {weather} = useSelector((state:RootState)=>state.currentWeatherReducer);
     let parameters = [
         {
             name: 'Температура',
@@ -14,7 +17,7 @@ export const ThisDayInfo = (props: Props) => {
                 scope: 'parameters',
                 name: 'temperature',
             },
-            description: '20 - ощущается как 17'
+            description: weather.temperature + ", " + weather.temp_feels_like
 
         },
         {
@@ -23,7 +26,7 @@ export const ThisDayInfo = (props: Props) => {
                 scope: 'parameters',
                 name: 'pressure',
             },
-            description: '755 мм ртутного столба - нормальное'
+            description: weather.pressure
 
         },
         {
@@ -32,7 +35,7 @@ export const ThisDayInfo = (props: Props) => {
                 scope: 'parameters',
                 name: 'precipitation',
             },
-            description: 'Без осадков'
+            description: weather.description
 
         },
         {
@@ -41,7 +44,7 @@ export const ThisDayInfo = (props: Props) => {
                 scope: 'parameters',
                 name: 'wind',
             },
-            description: '3 м/с юго-запад - легкий ветер'
+            description: weather.wind.speed
 
         }
 

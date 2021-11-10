@@ -6,6 +6,10 @@ export const store = configureStore({
   reducer: {
       currentWeatherReducer: currentWeatherReducer
   },
+  middleware: getDefaultMiddleware =>
+  getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
