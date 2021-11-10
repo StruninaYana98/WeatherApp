@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { CurrentWeatherService } from '../../services/CurrentWeatherService';
+import { WeatherService } from '../../services/WeatherService';
 import { AppDispatch } from '../../store/store';
 import { Days } from './components/Days/Days';
 import { ThisDay } from './components/ThisDay/ThisDay';
@@ -13,11 +13,12 @@ interface Props {
 
 export const Home = (props: Props) => {
 
-    const dispatch = useDispatch<AppDispatch>();
+    const useAppDispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        dispatch(CurrentWeatherService.getCurrentWeather(498817));
+        useAppDispatch(WeatherService.getCurrentWeather(498817));
     })
+    
     return (
         <div className={s.home}>
             <div className={s.currentDay}>

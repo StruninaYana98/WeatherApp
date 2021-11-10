@@ -10,45 +10,47 @@ type ApiResponse = {
 export interface CurrentWeatherState {
   weather: any;
   isFetching: boolean;
+  isFetchingSuccessful: boolean;
   response: ApiResponse;
-
 }
 
 const initialState: CurrentWeatherState = {
   weather: {},
   isFetching: false,
+  isFetchingSuccessful: false,
   response: {
     status: 0,
     message: "",
   },
-  
 };
 
 export const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState,
   reducers: {
-    fetchCurrentWeather: (state: CurrentWeatherState) => {
+    setIsCurrentWeatherFetching: (state: CurrentWeatherState, action: PayloadAction<boolean>) => {
       state.isFetching = true;
     },
-    fetchCurrentWeatherSuccess: (state: CurrentWeatherState, action: PayloadAction<AxiosResponse>) => {
-      state.isFetching = false;
-      state.weather = action.payload.data;
+    setCurrentWeather: (
+      state: CurrentWeatherState,
+      action: PayloadAction<AxiosResponse>
+    ) => {
+      if (action.payload.status == 200) {
+        state.isFetchingSuccessful = true;
+        state.weather = action.payload.data;
+      } else {
+        state.isFetchingSuccessful = false;
+      }
       state.response.status = action.payload.status;
       state.response.message = action.payload.statusText;
-    },
-    fetchCurrentWeatherError: (state: CurrentWeatherState,action: PayloadAction<AxiosResponse>) => {
-      state.isFetching = false;
-      state.response.status = action.payload.status;
-      state.response.message = action.payload.statusText;
-    },
+      
+    }
   },
 });
 
 export const {
-  fetchCurrentWeather,
-  fetchCurrentWeatherSuccess,
-  fetchCurrentWeatherError,
+  setIsCurrentWeatherFetching,
+  setCurrentWeather,
 } = currentWeatherSlice.actions;
 
 export default currentWeatherSlice.reducer;
