@@ -13,10 +13,10 @@ interface Props {
 
 export const Home = (props: Props) => {
 
-    const useAppDispatch = useDispatch<AppDispatch>();
+    const dispatch = useDispatch<AppDispatch>();
 
     useEffect(() => {
-        useAppDispatch(WeatherService.getCurrentWeather(498817));
+        dispatch(WeatherService.getCurrentWeather(498817));
     })
     
     return (
