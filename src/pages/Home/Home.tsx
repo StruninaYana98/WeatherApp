@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { LocationApi } from '../../apis/LocationApi';
+import { WeatherApi } from '../../apis/WeatherApi';
+import { LocationService } from '../../services/LocationService';
 import { WeatherService } from '../../services/WeatherService';
-import { AppDispatch } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 import { Days } from './components/Days/Days';
 import { ThisDay } from './components/ThisDay/ThisDay';
 import { ThisDayInfo } from './components/ThisDayInfo/ThisDayInfo';
@@ -15,11 +17,18 @@ interface Props {
 export const Home = (props: Props) => {
 
     const dispatch = useDispatch<AppDispatch>();
+    const {location} = useSelector((state:RootState)=>state.locationReducer)
 
-    useEffect(() => {
-        dispatch(WeatherService.getCurrentWeather(498817));
-        LocationApi.getCountryCities();
-    })
+    useEffect( () => {
+        (async ()=>{
+            
+        let location = await dispatch(LocationService.getCurrentLocation());
+        await dispatch(LocationService.getCountryCities(location.country));
+        await dispatch(WeatherService.getCurrentWeather(location.coord));
+        await dispatch(WeatherService.getWeekWeather(location.coord));
+        
+        })();
+    },[])
     
     return (
         <div className={s.home}>

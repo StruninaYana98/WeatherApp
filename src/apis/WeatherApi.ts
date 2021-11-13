@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { Coordinates } from "../types/Location";
 
-export  class  WeatherApi {
+export class WeatherApi {
   private static weatherApi = axios.create({
     baseURL: "https://api.openweathermap.org/data/2.5/",
   });
@@ -8,7 +9,6 @@ export  class  WeatherApi {
   private static parameters = {
     units: "metric",
     appid: process.env.REACT_APP_WEATHER_API_KEY as string,
-    lang: "RU"
   };
 
   private static getFullUrl(partialUrl: string) {
@@ -23,7 +23,37 @@ export  class  WeatherApi {
     return partialUrl + paramString;
   }
 
-  static async getCurrentWeather(cityId:number){
-      return await WeatherApi.weatherApi.get(WeatherApi.getFullUrl(`weather?id=${cityId}`));
+  static async getCurrentWeather(city: string) {
+    try {
+      return await WeatherApi.weatherApi.get(
+        WeatherApi.getFullUrl(`weather?q=${city}`)
+      );
+    } catch (err) {
+      console.warn(err);
+      return null;
+    }
   }
+
+  static async getCurrentWeatherByCoordinates(coord: Coordinates) {
+    try {
+      return await WeatherApi.weatherApi.get(
+        WeatherApi.getFullUrl(`weather?lat=${coord.lat}&lon=${coord.lon}`)
+      );
+    } catch (err) {
+      console.warn(err);
+      return null;
+    }
+  }
+
+  static async getWeekWeatherByCoordinates(coord: Coordinates) {
+    try {
+      return await WeatherApi.weatherApi.get(
+        WeatherApi.getFullUrl(`onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=hourly,current,minutely`)
+      );
+    } catch (err) {
+      console.warn(err);
+      return null;
+    }
+  }
+  
 }

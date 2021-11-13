@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { GlobalSvgSelector } from '../../../../assets/svg/GlobalSvgSelector';
+import { RootState } from '../../../../store/store';
 import { Day } from './components/Day';
 import s from "./Days.module.scss";
 
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export const Days = (props: Props) => {
+    const {weekWeatherList} = useSelector((state:RootState)=>state.weekWeatherReducer);
     let days = [
         {
             day: "Сегодня",
@@ -95,8 +98,8 @@ export const Days = (props: Props) => {
             </div>
             <div className={s.daysWrapper}>
                 {
-                    days.map((day) => (
-                        <Day {...day} />
+                    weekWeatherList.map((day) => (
+                        <Day day={day} key={day.date}/>
                     ))
                 }
 

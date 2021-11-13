@@ -1,28 +1,21 @@
 import React from 'react';
 import { GlobalSvgSelector } from '../../../../../assets/svg/GlobalSvgSelector';
+import { DayWeather } from '../../../../../types/Weather';
 import s from "./Day.module.scss";
 
 interface Props {
-    day: string;
-    data:string
-    logo:{
-        scope:string;
-        name:string;
-    },
-    dayTemperature:string;
-    nightTemperature:string;
-    weather:string;
+    day:DayWeather
 }
 
-export const Day = ({day, data, logo, dayTemperature, nightTemperature,weather}: Props) => {
+export const Day = ({day}: Props) => {
     return (
         <div className={s.dayWrapper}>
-            <p className={s.day}>{day}</p>
-            <p className = {s.data}>{data}</p>
-            <div className={s.logo}><GlobalSvgSelector scope={logo.scope} name={logo.name}/></div>
-            <p className={s.dayTemperature}>{dayTemperature}</p>
-            <p className={s.nightTemperature}>{nightTemperature}</p>
-            <p className={s.weather}>{weather}</p>
+            <p className={s.day}>{day.day}</p>
+            <p className = {s.data}>{String(day.date)}</p>
+            <div className={s.logo}><GlobalSvgSelector scope={''} name={''}/></div>
+            <p className={s.dayTemperature}>{day.day_temp}</p>
+            <p className={s.nightTemperature}>{day.night_temp}</p>
+            <p className={s.weather}>{day.description}</p>
         </div>
     )
 }

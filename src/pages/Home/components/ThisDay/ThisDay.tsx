@@ -10,18 +10,18 @@ interface Props {
 
 export const ThisDay = (props: Props) => {
     const { weather , isFetching} =  useSelector((state:RootState)=>state.currentWeatherReducer);
+    const {location }=  useSelector((state:RootState)=>state.locationReducer);
     return (
         <div className={s.thisDayWrapper}>
             <div className={s.dayWrapper}>
                 <div>
                     <p className={s.degrees}>{weather.temperature}</p>
-                    <p className={s.day}>сегодня</p>
+                    <p className={s.day}>today</p>
                 </div>
                 <div className={s.icon}><GlobalSvgSelector scope="weather" name="day" /></div>
             </div>
             <div className={s.information}>
-                <p>Время: 21:54</p>
-                <p>Город: Санкт-Петербург</p>
+                <p>city: {location.city}</p>
 
             </div>
         </div>

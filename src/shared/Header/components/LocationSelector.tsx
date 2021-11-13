@@ -1,5 +1,9 @@
 import React from 'react';
-import { useState} from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { LocationService } from '../../../services/LocationService';
+import { WeatherService } from '../../../services/WeatherService';
+import { AppDispatch, RootState } from '../../../store/store';
 import s from "./LocationSelector.module.scss";
 
 interface Props {
@@ -8,34 +12,43 @@ interface Props {
 }
 
 export const LocationSelector = ({ selected, options }: Props) => {
+    const { location, countryCities } = useSelector((state: RootState) => state.locationReducer)
+    const dispatch = useDispatch<AppDispatch>();
     const [expanded, toggleExpand] = useState(false);
     const selectRef = React.createRef<HTMLDivElement>();
-    
-    function expandDropdown(){
+
+    function expandDropdown() {
         toggleExpand(true);
     }
-    document.addEventListener('click',(event)=>{
-        if(selectRef.current && !(selectRef.current as any).contains(event.target)){
+    document.addEventListener('click', (event) => {
+        if (selectRef.current && !(selectRef.current as any).contains(event.target)) {
             toggleExpand(false);
-  
+
         }
 
     })
 
+    async function selectLocation(option:string){
+           await dispatch(LocationService.setCurrentLocation(option));
+           await dispatch(WeatherService.getCurrentWeather(option))
+    }
+
     return (
         <div className={s.selectDropdown} ref={selectRef}>
-            <input className={s.selected} value={selected} onClick={expandDropdown}></input>
-            <ul className={`${s.options} ${expanded? s.expanded : s.closed}`} >
-                {
-                    options.map((option)=>(
-                        <li className={s.option} value={s.option}>
-                            {option}
-                        </li>)
-                    )
+            <input className={s.selected} defaultValue={location.city}  onClick={expandDropdown}></input>
+            {countryCities ?
+                <ul className={`${s.options} ${expanded ? s.expanded : s.closed}`} >
+                    {
+                        countryCities.map((option) => (
+                            <li className={s.option}  onClick={()=>selectLocation(option)}>
+                                {option}
+                            </li>)
+                        )
 
-                }
+                    }
 
-            </ul>
+                </ul>
+                : null}
 
         </div>
     )

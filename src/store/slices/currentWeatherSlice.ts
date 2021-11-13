@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { act } from "react-dom/test-utils";
 import { parceApiRespToWeather } from "../../helpers/Parcers";
-import { Weather } from "../../types/Weather";
+import { CurrentWeather } from "../../types/Weather";
 
 type ApiResponse = {
   status: number;
@@ -10,7 +10,7 @@ type ApiResponse = {
 };
 
 export interface CurrentWeatherState {
-  weather: Weather;
+  weather: CurrentWeather;
   isFetching: boolean;
   isFetchingSuccessful: boolean;
   response: ApiResponse;
@@ -43,20 +43,13 @@ export const currentWeatherSlice = createSlice({
   initialState,
   reducers: {
     setIsCurrentWeatherFetching: (state: CurrentWeatherState, action: PayloadAction<boolean>) => {
-      state.isFetching = true;
+      state.isFetching = action.payload;
     },
     setCurrentWeather: (
       state: CurrentWeatherState,
-      action: PayloadAction<AxiosResponse>
+      action: PayloadAction<CurrentWeather>
     ) => {
-      if (action.payload.status == 200) {
-        state.isFetchingSuccessful = true;
-        state.weather = parceApiRespToWeather(action.payload);
-      } else {
-        state.isFetchingSuccessful = false;
-      }
-      state.response.status = action.payload.status;
-      state.response.message = action.payload.statusText;
+        state.weather = action.payload;
       
     }
   },
