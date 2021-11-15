@@ -26,7 +26,7 @@ export const Header = (props: Props) => {
                 <div className={s.logo}>
                     <GlobalSvgSelector scope="global" name="app-icon" />
                 </div>
-                <div className={s.appName}>Weather App</div>
+                <div className={s.appName}>{process.env.REACT_APP_APP_NAME}</div>
             </div>
             <div className={s.settings}>
                 <div className={s.theme}><ThemeSwither/></div>

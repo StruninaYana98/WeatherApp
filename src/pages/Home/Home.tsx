@@ -5,7 +5,7 @@ import { WeatherApi } from '../../apis/WeatherApi';
 import { LocationService } from '../../services/LocationService';
 import { WeatherService } from '../../services/WeatherService';
 import { AppDispatch, RootState } from '../../store/store';
-import { Days } from './components/Days/Days';
+import { Filters } from './components/Filters/Filters';
 import { ThisDay } from './components/ThisDay/ThisDay';
 import { ThisDayInfo } from './components/ThisDayInfo/ThisDayInfo';
 import s from "./Home.module.scss";
@@ -26,6 +26,8 @@ export const Home = (props: Props) => {
         await dispatch(LocationService.getCountryCities(location.country));
         await dispatch(WeatherService.getCurrentWeather(location.coord));
         await dispatch(WeatherService.getWeekWeather(location.coord));
+
+        await dispatch(WeatherService.getHourlyWeather(location.coord));
         
         })();
     },[])
@@ -36,7 +38,7 @@ export const Home = (props: Props) => {
                 <ThisDay />
                 <ThisDayInfo />
             </div>
-            <Days />
+            <Filters />
         </div>
     )
 }

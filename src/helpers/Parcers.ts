@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { CurrentWeather, DayWeather } from "../types/Weather";
+import { CurrentWeather, DayWeather, HourlyWeather } from "../types/Weather";
 export const parceApiRespToWeather = (resp: AxiosResponse | null):CurrentWeather =>  {
   let weather: CurrentWeather = {
     temperature: "",
@@ -61,16 +61,16 @@ export const parceApiRespToWeekWeather=(resp: AxiosResponse | null): DayWeather[
       weekWeather.push({
         date:dateToString(new Date(day.dt * 1000)),
         day:getWeekDay( new Date(day.dt * 1000).getDay()),
-        min_temp:day.temp? day.temp.min:"",
-        max_temp:day.temp? day.temp.max:"",
-        day_temp:day.temp? day.temp.day:"",
-        night_temp:day.temp? day.temp.night:"",
+        min_temp:day.temp? Math.floor(day.temp.min) + "\xB0":"",
+        max_temp:day.temp? Math.floor(day.temp.max)+ "\xB0":"",
+        day_temp:day.temp? Math.floor(day.temp.day)+ "\xB0":"",
+        night_temp:day.temp? Math.floor(day.temp.night)+ "\xB0":"",
         weatherId: day.weather? day.weather[0]?.id: "",
         description: day.weather? day.weather[0]?.description: "",
-        pressure: day.pressure,
+        pressure: day.pressure + " mm Hg",
         uvi:day.uvi,
         wind: {
-          speed: day.wind_speed,
+          speed: day.wind_speed + " m/s",
           direction: day.wind_deg,
         }
       })
@@ -78,4 +78,31 @@ export const parceApiRespToWeekWeather=(resp: AxiosResponse | null): DayWeather[
   }
   console.log(weekWeather)
   return weekWeather
+}
+
+function getFullTime(date:Date){
+  return date.getHours()+":" + date.getMinutes();
+}
+
+export const parceApiRespToHourlyWeather=(resp: AxiosResponse | null): HourlyWeather[] =>  {
+  let hourlyWeather:HourlyWeather[] = []
+  if(!resp){
+    return hourlyWeather
+  }
+  let hourly: any[] = resp.data?.hourly || [];
+  
+  if(hourly && hourly.length){
+    hourly.forEach(day => {
+      hourlyWeather.push({
+        time:getFullTime(new Date(day.dt * 1000)),
+        temperature:day.temp? Math.floor(day.temp) + "\xB0":"",
+        temp_number:Math.floor(day.temp),
+        temp_feels_like:day.temp? Math.floor(day.feels_like)+ "\xB0":"",
+        description: day.weather? day.weather[0]?.description: "",
+        uvi:day.uvi
+      })
+    });
+  }
+  console.log(hourlyWeather)
+  return hourlyWeather
 }

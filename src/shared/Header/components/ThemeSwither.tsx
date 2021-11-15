@@ -11,7 +11,7 @@ export const ThemeSwither = (props: Props) => {
 
     const themeContext = useTheme();
 
-    function SwitchTheme(event: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+    function SwitchTheme(event: React.ChangeEvent<HTMLInputElement>) {
         let target = event.target && event.target as HTMLInputElement;
 
         if (target && target.checked) {
@@ -22,6 +22,6 @@ export const ThemeSwither = (props: Props) => {
 
     }
     return (
-        <input className={s.themeSwither} type="checkbox" onClick={SwitchTheme} checked={themeContext.theme === Theme.DARK}></input>
+        <input className={s.themeSwither} type="checkbox" onChange={SwitchTheme} defaultChecked={themeContext.theme === Theme.DARK}></input>
     )
 }

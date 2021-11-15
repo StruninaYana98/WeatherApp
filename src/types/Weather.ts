@@ -42,3 +42,12 @@ export type DayWeather = {
     direction: string;
   };
 }
+
+export type HourlyWeather = {
+  time:string;
+  temperature: string;
+  temp_number:number;
+  temp_feels_like: string;
+  uvi:number;
+  description: string;
+}

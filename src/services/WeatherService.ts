@@ -1,14 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { WeatherApi } from "../apis/WeatherApi";
-import { parceApiRespToWeather, parceApiRespToWeekWeather } from "../helpers/Parcers";
+import { parceApiRespToHourlyWeather, parceApiRespToWeather, parceApiRespToWeekWeather } from "../helpers/Parcers";
 import {
   setIsCurrentWeatherFetching,
   setCurrentWeather,
 } from "../store/slices/currentWeatherSlice";
-import { setIsWeekWeatherFetching, setWeekWeather } from "../store/slices/weekWeatherSlice";
+import { setIsHourlyWeatherFetching, setHourlyWeather } from "../store/slices/hourlyWeatherSlice";
+import { setIsWeekWeatherFetching, setWeekWeather  } from "../store/slices/weekWeatherSlice";
 import { AppDispatch } from "../store/store";
 import { Coordinates } from "../types/Location";
-import { defaultWeather, CurrentWeather, DayWeather } from "../types/Weather";
+import { defaultWeather, CurrentWeather, DayWeather, HourlyWeather } from "../types/Weather";
 
 export class WeatherService {
 
@@ -57,6 +58,31 @@ export class WeatherService {
       return weekWeather;
     }else{
       dispatch(setIsWeekWeatherFetching(false));
+      return []
+    }
+
+  }
+  static getHourlyWeather = (location:string|Coordinates) =>async(
+    dispatch: AppDispatch
+  ):Promise<HourlyWeather[]>=>{
+
+    let res: AxiosResponse | null = null;
+
+    dispatch(setIsHourlyWeatherFetching(true));
+
+    if (typeof location == "string") {
+      res = null
+    } else {
+      res = await WeatherApi.getHourlyWeatherByCoordinates(location);
+    }
+
+    if (res && res.status === 200) {
+      let hourlyWeather = parceApiRespToHourlyWeather(res);
+      dispatch(setHourlyWeather(hourlyWeather));
+      dispatch(setIsHourlyWeatherFetching(false));
+      return hourlyWeather;
+    }else{
+      dispatch(setIsHourlyWeatherFetching(false));
       return []
     }
 

@@ -39,8 +39,8 @@ export const LocationSelector = ({ selected, options }: Props) => {
             {countryCities ?
                 <ul className={`${s.options} ${expanded ? s.expanded : s.closed}`} >
                     {
-                        countryCities.map((option) => (
-                            <li className={s.option}  onClick={()=>selectLocation(option)}>
+                        countryCities.map((option,index) => (
+                            <li className={s.option} key={index}  onClick={()=>selectLocation(option)}>
                                 {option}
                             </li>)
                         )

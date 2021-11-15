@@ -55,5 +55,16 @@ export class WeatherApi {
       return null;
     }
   }
+
+  static async getHourlyWeatherByCoordinates(coord: Coordinates) {
+    try {
+      return await WeatherApi.weatherApi.get(
+        WeatherApi.getFullUrl(`onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=daily,current,minutely`)
+      );
+    } catch (err) {
+      console.warn(err);
+      return null;
+    }
+  }
   
 }
