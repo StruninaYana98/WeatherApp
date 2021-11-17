@@ -4,7 +4,7 @@ import { Location } from "../../types/Location";
 interface LocationState {
   isCurrentLocationFetching: boolean;
   location: Location;
-  countryCities: string[];
+  countryCities: Location[];
   isCitiesFetching: boolean;
 }
 
@@ -49,7 +49,7 @@ export const locationSlice = createSlice({
     },
     setCountryCities: (
       state: LocationState,
-      action: PayloadAction<string[]>
+      action: PayloadAction<Location[]>
     ) => {
       state.countryCities = action.payload;
     },

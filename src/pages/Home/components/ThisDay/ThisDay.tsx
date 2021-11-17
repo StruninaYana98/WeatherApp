@@ -18,11 +18,12 @@ export const ThisDay = (props: Props) => {
                     <p className={s.degrees}>{weather.temperature}</p>
                     <p className={s.day}>today</p>
                 </div>
-                <div className={s.icon}><GlobalSvgSelector scope="weather" name="day" /></div>
+                <div className={s.icon}><GlobalSvgSelector scope={weather.logo.scope} name={weather.logo.name} /></div>
             </div>
             <div className={s.information}>
                 <p>city: {location.city}</p>
-
+                <p>local time: {weather.time}</p>
+                <p className={s.description}>{weather.description}</p>
             </div>
         </div>
     )

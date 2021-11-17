@@ -12,7 +12,7 @@ export const ThisDayInfo = (props: Props) => {
     const {weather} = useSelector((state:RootState)=>state.currentWeatherReducer);
     let parameters = [
         {
-            name: 'Температура',
+            name: 'Temperature',
             logo: {
                 scope: 'parameters',
                 name: 'temperature',
@@ -21,7 +21,7 @@ export const ThisDayInfo = (props: Props) => {
 
         },
         {
-            name: 'Давление',
+            name: 'Pressure',
             logo: {
                 scope: 'parameters',
                 name: 'pressure',
@@ -30,16 +30,15 @@ export const ThisDayInfo = (props: Props) => {
 
         },
         {
-            name: 'Осадки',
-            logo: {
+            name:"Humidity",
+            logo:{
                 scope: 'parameters',
-                name: 'precipitation',
+                name: 'humidity',
             },
-            description: weather.description
-
+            description: weather.humidity
         },
         {
-            name: 'Ветер',
+            name: 'Wind',
             logo: {
                 scope: 'parameters',
                 name: 'wind',

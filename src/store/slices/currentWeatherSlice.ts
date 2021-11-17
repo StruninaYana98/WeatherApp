@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { act } from "react-dom/test-utils";
 import { parceApiRespToWeather } from "../../helpers/Parcers";
-import { CurrentWeather } from "../../types/Weather";
+import { CurrentWeather, defaultWeather } from "../../types/Weather";
 
 type ApiResponse = {
   status: number;
@@ -17,19 +17,7 @@ export interface CurrentWeatherState {
 }
 
 const initialState: CurrentWeatherState = {
-  weather: {
-    temperature: "",
-    temp_feels_like: "",
-    max_temperature: "",
-    min_temperature: "",
-    pressure: "",
-    weatherId: -1,
-    description: "",
-    wind: {
-      speed: "",
-      direction: "",
-    },
-  },
+  weather:{...defaultWeather},
   isFetching: false,
   isFetchingSuccessful: false,
   response: {

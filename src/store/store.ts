@@ -5,14 +5,15 @@ import currentWeatherReducer from './slices/currentWeatherSlice';
 import weekWeatherReducer from './slices/weekWeatherSlice';
 import hourlyWeatherReducer  from './slices/hourlyWeatherSlice';
 import locationReducer from './slices/locationSlice';
+import filterReducer from './slices/filterSlice';
 
 export const store = configureStore({
   reducer: {
       currentWeatherReducer: currentWeatherReducer,
       locationReducer: locationReducer,
       weekWeatherReducer:weekWeatherReducer,
-      hourlyWeatherReducer:hourlyWeatherReducer
-
+      hourlyWeatherReducer:hourlyWeatherReducer,
+      filterReducer:filterReducer
   },
   middleware: getDefaultMiddleware =>
   getDefaultMiddleware({

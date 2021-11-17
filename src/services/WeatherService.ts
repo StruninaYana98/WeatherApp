@@ -37,7 +37,7 @@ export class WeatherService {
     }
   };
 
-  static getWeekWeather = (location:string|Coordinates) =>async(
+  static getWeekWeather = (location:Coordinates) =>async(
     dispatch: AppDispatch
   ):Promise<DayWeather[]>=>{
 
@@ -45,12 +45,8 @@ export class WeatherService {
 
     dispatch(setIsWeekWeatherFetching(true));
 
-    if (typeof location == "string") {
-      res = null
-    } else {
-      res = await WeatherApi.getWeekWeatherByCoordinates(location);
-    }
-
+    res = await WeatherApi.getWeekWeatherByCoordinates(location);
+    
     if (res && res.status === 200) {
       let weekWeather = parceApiRespToWeekWeather(res);
       dispatch(setWeekWeather(weekWeather));
@@ -62,20 +58,16 @@ export class WeatherService {
     }
 
   }
-  static getHourlyWeather = (location:string|Coordinates) =>async(
+  static getHourlyWeather = (location:Coordinates) =>async(
     dispatch: AppDispatch
   ):Promise<HourlyWeather[]>=>{
 
     let res: AxiosResponse | null = null;
 
     dispatch(setIsHourlyWeatherFetching(true));
-
-    if (typeof location == "string") {
-      res = null
-    } else {
-      res = await WeatherApi.getHourlyWeatherByCoordinates(location);
-    }
-
+  
+    res = await WeatherApi.getHourlyWeatherByCoordinates(location);
+    
     if (res && res.status === 200) {
       let hourlyWeather = parceApiRespToHourlyWeather(res);
       dispatch(setHourlyWeather(hourlyWeather));

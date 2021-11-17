@@ -1,3 +1,4 @@
+import { parceApiRespToCities } from './../helpers/Parcers';
 import { LocationApi } from "./../apis/LocationApi";
 import { AppDispatch } from "../store/store";
 import {
@@ -46,13 +47,16 @@ export class LocationService {
   static getCountryCities = (country: string) => async (dispatch: AppDispatch) => {
     dispatch(setIsCitiesFetching(true));
     const res = await LocationApi.getCountryCities(country);
-    const cities = res && res.status ===200 ? res.data.data : [];
+    let cities: Location[] =[]
+    if(res && res.status==200){
+      cities = parceApiRespToCities(res);
+    }
     dispatch(setCountryCities(cities));
     dispatch(setIsCitiesFetching(false));
     return cities;
   };
 
-  static setCurrentLocation = (city: string) => (dispatch: AppDispatch) => {
-    dispatch(setCurrentCity(city));
+  static setCurrentLocation = (location: Location) => (dispatch: AppDispatch) => {
+    dispatch(setCurrenLocation(location));
   };
 }

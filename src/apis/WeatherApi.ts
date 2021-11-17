@@ -45,6 +45,7 @@ export class WeatherApi {
     }
   }
 
+
   static async getWeekWeatherByCoordinates(coord: Coordinates) {
     try {
       return await WeatherApi.weatherApi.get(

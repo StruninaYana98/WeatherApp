@@ -1,36 +1,29 @@
 .componentWrapper{
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.055);
     border-radius: 0.5rem;
-    border: var(--border-prime);
-    background-image: var(--theme-prime);
-    background-blend-mode: var(--background-blend-mode);
-    padding: 1rem;
+    border: var(--border-second);
     overflow-x: auto;
     font-size: 1rem;
-    color:var(--theme-base);
 }
 
-.time{
-    color:var(--theme-accent);
-    font-size: 1.2rem;
-}
 
 .table{
     border-collapse: collapse;
 }
 
 .information{
-    padding: 0 0.2rem 0.5rem 0.2rem;
     vertical-align: top;
+    text-align: center;
 
     .time{
-        width: 3.4rem;
         text-align: center;
+        padding: 0.2rem;
+        padding-top: 1rem;
+        color:var(--theme-accent);
+        font-size: 1.2rem;
     }
 }
 .aboveZero{
     vertical-align: bottom;
-
    
 
     .wrapper{
@@ -38,11 +31,13 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        padding-top: 2rem;
        
     }
     
     .column{
-        background-color: rgb(252, 101, 146);
+        background-color: var(--theme-second);
+        border-radius: 0.2rem;
     }
 }
 .temp{
@@ -52,8 +47,13 @@
 
 .belowZero{
     vertical-align: top;
+
+    .wrapper{
+        padding-bottom: 2rem;
+    }
     .column{
-        background-color: rgb(78, 147, 252);
+        background-color: var(--theme-accent);
+        border-radius: 0.2rem;
     }
 }
 
@@ -63,5 +63,22 @@
 
     span{
         font-size: 0.8rem;
+    }
+}
+.parameters{
+    vertical-align: bottom;
+    text-align: center;
+    .parametersWrapper{
+        padding:0.5rem;
+    }
+
+    .weatherIcon{
+        width: 4rem;
+        height: 4rem;
+
+        object{
+            width: 4rem;
+            height: 4rem;
+        }
     }
 }

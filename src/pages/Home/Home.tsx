@@ -28,7 +28,7 @@ export const Home = (props: Props) => {
         await dispatch(WeatherService.getWeekWeather(location.coord));
 
         await dispatch(WeatherService.getHourlyWeather(location.coord));
-        
+       // await LocationApi.getCountryCities(location.country);
         })();
     },[])
     
