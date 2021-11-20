@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const ThisDay = (props: Props) => {
-    const { weather , isFetching} =  useSelector((state:RootState)=>state.currentWeatherReducer);
+    const { weather , isCurrentWeatherFetching: isFetching} =  useSelector((state:RootState)=>state.currentWeatherReducer);
     const {location }=  useSelector((state:RootState)=>state.locationReducer);
     return (
         <div className={s.thisDayWrapper}>

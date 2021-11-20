@@ -1,29 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ApiResponse, defaultApiResponse } from "../../types/ApiResponse";
 import { Location } from "../../types/Location";
 
 interface LocationState {
   isCurrentLocationFetching: boolean;
-  isFetchingCurrentLocationSuccessful:boolean;
   location: Location;
-  countryCities: Location[];
+  currentLocationResponse: ApiResponse;
+
   isCitiesFetching: boolean;
-  isFetchingCountryCitiesSuccessful:boolean;
+  countryCities: Location[];
+  countryCitiesResponse: ApiResponse;
 }
 
 const initialState: LocationState = {
-  isCurrentLocationFetching: false,
-  isFetchingCurrentLocationSuccessful: false,
+  isCurrentLocationFetching: true,
+  currentLocationResponse: { ...defaultApiResponse },
   location: {
     city: "",
     country: "",
-    coord:{
-        lat:"",
-        lon:""
-    }
+    coord: {
+      lat: "",
+      lon: "",
+    },
   },
   countryCities: [],
-  isCitiesFetching: false,
-  isFetchingCountryCitiesSuccessful:false
+  isCitiesFetching: true,
+  countryCitiesResponse: { ...defaultApiResponse },
 };
 
 export const locationSlice = createSlice({
@@ -34,18 +36,12 @@ export const locationSlice = createSlice({
       state: LocationState,
       action: PayloadAction<boolean>
     ) => {
-      if(action.payload){
-        state.isFetchingCurrentLocationSuccessful = false;
-      }
       state.isCurrentLocationFetching = action.payload;
     },
     setIsCitiesFetching: (
       state: LocationState,
       action: PayloadAction<boolean>
     ) => {
-      if(action.payload){
-        state.isFetchingCountryCitiesSuccessful = false;
-      }
       state.isCitiesFetching = action.payload;
     },
     setCurrenLocation: (
@@ -53,15 +49,19 @@ export const locationSlice = createSlice({
       action: PayloadAction<Location>
     ) => {
       state.location = action.payload;
-      state.isFetchingCurrentLocationSuccessful = true;
     },
     setCountryCities: (
       state: LocationState,
       action: PayloadAction<Location[]>
     ) => {
       state.countryCities = action.payload;
-      state.isFetchingCountryCitiesSuccessful = true;
     },
+    setCurrentLocationResponse:(state:LocationState, action: PayloadAction<ApiResponse>)=>{
+      state.currentLocationResponse = action.payload
+    },
+    setCountryCitiesResponse:(state:LocationState, action: PayloadAction<ApiResponse>)=>{
+      state.countryCitiesResponse = action.payload
+    }
   },
 });
 
@@ -70,5 +70,7 @@ export const {
   setIsCitiesFetching,
   setCurrenLocation,
   setCountryCities,
+  setCurrentLocationResponse,
+  setCountryCitiesResponse
 } = locationSlice.actions;
 export default locationSlice.reducer;

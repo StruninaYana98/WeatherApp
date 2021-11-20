@@ -4,6 +4,7 @@ import { LocationApi } from '../../apis/LocationApi';
 import { WeatherApi } from '../../apis/WeatherApi';
 import { LocationService } from '../../services/LocationService';
 import { WeatherService } from '../../services/WeatherService';
+import { ErrorHandler } from '../../shared/ErrorHandler/ErrorHandler';
 import { Loader } from '../../shared/Loader/Loader';
 import { AppDispatch, RootState } from '../../store/store';
 import { Filters } from './components/Filters/Filters';
@@ -18,8 +19,8 @@ interface Props {
 export const Home = (props: Props) => {
 
     const dispatch = useDispatch<AppDispatch>();
-    const { isCurrentLocationFetching, isFetchingCurrentLocationSuccessful } = useSelector((state: RootState) => state.locationReducer)
-    const { isFetchingSuccessful } = useSelector((state: RootState) => state.currentWeatherReducer)
+    const { isCurrentLocationFetching, currentLocationResponse } = useSelector((state: RootState) => state.locationReducer)
+    const { isCurrentWeatherFetching, currentWeatherResponse } = useSelector((state: RootState) => state.currentWeatherReducer)
     useEffect(() => {
         (async () => {
 
@@ -35,15 +36,21 @@ export const Home = (props: Props) => {
     return (
         <div className={s.home}>
             { !isCurrentLocationFetching ?
-                <div>
-                    {isFetchingSuccessful ?
-                        <div className={s.currentDay}>
-                            <ThisDay />
-                            <ThisDayInfo />
-                        </div> : <div className={s.loaderWrapper}> <Loader /> </div>
-                    }
-                    <Filters />
-                </div> : <div className={s.loaderWrapper}> <Loader /></div>
+                currentLocationResponse.isSuccessful ?
+                    <div>
+                        {!isCurrentWeatherFetching ?
+                            currentWeatherResponse.isSuccessful ?
+                            <div className={s.currentDay}>
+                                <ThisDay />
+                                <ThisDayInfo />
+                            </div> 
+                            : <ErrorHandler message={currentWeatherResponse.message}/>
+                        : <Loader /> 
+                        }
+                        <Filters />
+                    </div>
+                    : <ErrorHandler message={currentLocationResponse.message} />
+                :  <Loader />
             }
         </div>
     )

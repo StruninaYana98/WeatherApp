@@ -1,12 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import { WeatherApi } from "../apis/WeatherApi";
-import { parceApiRespToHourlyWeather, parceApiRespToWeather, parceApiRespToWeekWeather } from "../helpers/Parcers";
+import { parceApiRespToHourlyWeather, parceApiRespToWeather, parceApiRespToWeekWeather, parceAxiosResponseToApiResponse } from "../helpers/Parcers";
 import {
   setIsCurrentWeatherFetching,
   setCurrentWeather,
+  setCurrentWeatherResponse,
 } from "../store/slices/currentWeatherSlice";
-import { setIsHourlyWeatherFetching, setHourlyWeather } from "../store/slices/hourlyWeatherSlice";
-import { setIsWeekWeatherFetching, setWeekWeather  } from "../store/slices/weekWeatherSlice";
+import { setIsHourlyWeatherFetching, setHourlyWeather, setHourlyWeatherResponse } from "../store/slices/hourlyWeatherSlice";
+import { setIsWeekWeatherFetching, setWeekWeather, setWeekWeatherResponse  } from "../store/slices/weekWeatherSlice";
 import { AppDispatch } from "../store/store";
 import { Coordinates } from "../types/Location";
 import { defaultWeather, CurrentWeather, DayWeather, HourlyWeather } from "../types/Weather";
@@ -25,6 +26,8 @@ export class WeatherService {
     } else {
       res = await WeatherApi.getCurrentWeatherByCoordinates(location);
     }
+
+    dispatch(setCurrentWeatherResponse(parceAxiosResponseToApiResponse(res)))
     
     if (res && res.status === 200) {
       let weather = parceApiRespToWeather(res);
@@ -33,7 +36,7 @@ export class WeatherService {
       return weather;
     } else {
       dispatch(setIsCurrentWeatherFetching(false));
-      return defaultWeather;
+      return {...defaultWeather};
     }
   };
 
@@ -41,11 +44,10 @@ export class WeatherService {
     dispatch: AppDispatch
   ):Promise<DayWeather[]>=>{
 
-    let res: AxiosResponse | null = null;
-
     dispatch(setIsWeekWeatherFetching(true));
 
-    res = await WeatherApi.getWeekWeatherByCoordinates(location);
+    let res= await WeatherApi.getWeekWeatherByCoordinates(location);
+    dispatch(setWeekWeatherResponse(parceAxiosResponseToApiResponse(res)));
     
     if (res && res.status === 200) {
       let weekWeather = parceApiRespToWeekWeather(res);
@@ -62,11 +64,10 @@ export class WeatherService {
     dispatch: AppDispatch
   ):Promise<HourlyWeather[]>=>{
 
-    let res: AxiosResponse | null = null;
-
     dispatch(setIsHourlyWeatherFetching(true));
-  
-    res = await WeatherApi.getHourlyWeatherByCoordinates(location);
+
+    let res = await WeatherApi.getHourlyWeatherByCoordinates(location);
+    dispatch(setHourlyWeatherResponse(parceAxiosResponseToApiResponse(res)));
     
     if (res && res.status === 200) {
       let hourlyWeather = parceApiRespToHourlyWeather(res);

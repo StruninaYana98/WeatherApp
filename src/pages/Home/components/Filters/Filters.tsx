@@ -1,14 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { GlobalSvgSelector } from '../../../../assets/svg/GlobalSvgSelector';
 import { FilterMode } from '../../../../enums/FilterEnum';
 import { FilterService } from '../../../../services/FilterService';
-import { Loader } from '../../../../shared/Loader/Loader';
 import { AppDispatch, RootState } from '../../../../store/store';
-import { Day } from './components/Day';
-import { HourlyWeatherComponent } from './components/HourlyWeatherComponent';
+import { HourlyWeather } from './components/HourlyWeather';
+import { WeekWeather } from './components/WeekWeather';
 import s from "./Filters.module.scss";
 
 interface Props {
@@ -16,8 +13,7 @@ interface Props {
 }
 
 export const Filters = (props: Props) => {
-    const { weekWeatherList } = useSelector((state: RootState) => state.weekWeatherReducer);
-    const { hourlyWeatherList, isFetchingSuccessful } = useSelector((state: RootState) => state.hourlyWeatherReducer)
+
     const { filterMode } = useSelector((state: RootState) => state.filterReducer)
     const dispatch = useDispatch<AppDispatch>();
 
@@ -35,21 +31,11 @@ export const Filters = (props: Props) => {
                 </div>
             </div>
             {FilterMode.WEEK == filterMode ?
-                <div className={s.daysWrapper}>
-                    {
-                        weekWeatherList.map((day) => (
-                            <Day day={day} key={day.date} />
-                        ))
-                    }
-
-                </div> : null
+                <WeekWeather /> : null
             }
             {FilterMode.HOURLY == filterMode ?
-                isFetchingSuccessful ?
-                    <HourlyWeatherComponent hourlyWeather={hourlyWeatherList} /> : <div className={s.loaderWrapper}> <Loader /> </div>: null
-
+                <HourlyWeather /> : null
             }
-
         </div>
     )
 }

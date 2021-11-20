@@ -2,53 +2,50 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { act } from "react-dom/test-utils";
 import { parceApiRespToWeather } from "../../helpers/Parcers";
+import { ApiResponse, defaultApiResponse } from "../../types/ApiResponse";
 import { CurrentWeather, defaultWeather } from "../../types/Weather";
-
-type ApiResponse = {
-  status: number;
-  message: string;
-};
 
 export interface CurrentWeatherState {
   weather: CurrentWeather;
-  isFetching: boolean;
-  isFetchingSuccessful: boolean;
-  response: ApiResponse;
+  isCurrentWeatherFetching: boolean;
+  currentWeatherResponse: ApiResponse;
 }
 
 const initialState: CurrentWeatherState = {
-  weather:{...defaultWeather},
-  isFetching: false,
-  isFetchingSuccessful: false,
-  response: {
-    status: 0,
-    message: "",
-  },
+  weather: { ...defaultWeather },
+  isCurrentWeatherFetching: true,
+  currentWeatherResponse: { ...defaultApiResponse },
 };
 
 export const currentWeatherSlice = createSlice({
   name: "currentWeather",
   initialState,
   reducers: {
-    setIsCurrentWeatherFetching: (state: CurrentWeatherState, action: PayloadAction<boolean>) => {
-      if(action.payload){
-        state.isFetchingSuccessful = false;
-      }
-      state.isFetching = action.payload;
+    setIsCurrentWeatherFetching: (
+      state: CurrentWeatherState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.isCurrentWeatherFetching = action.payload;
     },
     setCurrentWeather: (
       state: CurrentWeatherState,
       action: PayloadAction<CurrentWeather>
     ) => {
-        state.weather = action.payload;
-        state.isFetchingSuccessful = true;
-    }
+      state.weather = action.payload;
+    },
+    setCurrentWeatherResponse: (
+      state: CurrentWeatherState,
+      action: PayloadAction<ApiResponse>
+    ) => {
+      state.currentWeatherResponse = action.payload;
+    },
   },
 });
 
 export const {
   setIsCurrentWeatherFetching,
   setCurrentWeather,
+  setCurrentWeatherResponse,
 } = currentWeatherSlice.actions;
 
 export default currentWeatherSlice.reducer;

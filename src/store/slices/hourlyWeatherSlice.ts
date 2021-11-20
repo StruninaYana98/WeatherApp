@@ -1,26 +1,18 @@
+import { defaultApiResponse } from "./../../types/ApiResponse";
 import { DayWeather, HourlyWeather } from "./../../types/Weather";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type ApiResponse = {
-  status: number;
-  message: string;
-};
+import { ApiResponse } from "../../types/ApiResponse";
 
 export interface HourlyWeatherState {
   hourlyWeatherList: HourlyWeather[];
-  isFetching: boolean;
-  isFetchingSuccessful: boolean;
-  response: ApiResponse;
+  isHourlyWeatherFetching: boolean;
+  hourlyWeatherResponse: ApiResponse;
 }
 
 const initialState: HourlyWeatherState = {
   hourlyWeatherList: [],
-  isFetching: false,
-  isFetchingSuccessful: false,
-  response: {
-    status: 0,
-    message: "",
-  },
+  isHourlyWeatherFetching: true,
+  hourlyWeatherResponse: { ...defaultApiResponse },
 };
 
 export const hourlyWeatherSlice = createSlice({
@@ -31,17 +23,19 @@ export const hourlyWeatherSlice = createSlice({
       state: HourlyWeatherState,
       action: PayloadAction<boolean>
     ) => {
-      if (action.payload) {
-        state.isFetchingSuccessful = false;
-      }
-      state.isFetching = action.payload;
+      state.isHourlyWeatherFetching = action.payload;
     },
     setHourlyWeather: (
       state: HourlyWeatherState,
       action: PayloadAction<HourlyWeather[]>
     ) => {
       state.hourlyWeatherList = action.payload;
-      state.isFetchingSuccessful = true;
+    },
+    setHourlyWeatherResponse: (
+      state: HourlyWeatherState,
+      action: PayloadAction<ApiResponse>
+    ) => {
+      state.hourlyWeatherResponse = action.payload;
     },
   },
 });
@@ -49,6 +43,7 @@ export const hourlyWeatherSlice = createSlice({
 export const {
   setIsHourlyWeatherFetching,
   setHourlyWeather,
+  setHourlyWeatherResponse
 } = hourlyWeatherSlice.actions;
 
 export default hourlyWeatherSlice.reducer;

@@ -67,5 +67,16 @@ export class WeatherApi {
       return null;
     }
   }
+
+  static async getWeatherFor16Days(coord: Coordinates){
+    try{
+      return await WeatherApi.weatherApi.get(
+        WeatherApi.getFullUrl(`forecast/daily?lat=${coord.lat}&lon=${coord.lon}&cnt=16`)
+      );
+    }catch (err) {
+      console.warn(err);
+      return null;
+    }
+  }
   
 }

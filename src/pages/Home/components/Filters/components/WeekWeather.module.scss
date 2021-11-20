@@ -1,0 +1,12 @@
+.daysWrapper{
+    display: flex;
+    overflow-x: auto;
+
+    & > *{
+        flex-grow: 1;
+    }
+
+   /* &::-webkit-scrollbar {
+        display: none;
+    }*/
+}

@@ -1,0 +1,20 @@
+.wrapper{
+    max-width: 30rem;
+    min-height: 30vh;
+    margin:auto;
+}
+
+.message{
+    color:var(--theme-accent);
+    font-size: 1.5rem;
+    text-align: center;
+    margin:0.5rem 0;
+
+}
+
+.errorIcon{
+    width:4rem;
+    height: 4rem;
+    margin:auto;
+    color:red;
+}

@@ -1,47 +1,48 @@
-import { DayWeather } from './../../types/Weather';
+import { DayWeather } from "./../../types/Weather";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type ApiResponse = {
-  status: number;
-  message: string;
-};
+import { ApiResponse, defaultApiResponse } from "../../types/ApiResponse";
 
 export interface WeekWeatherState {
-  weekWeatherList:DayWeather[];
-  isFetching: boolean;
-  isFetchingSuccessful: boolean;
-  response: ApiResponse;
+  weekWeatherList: DayWeather[];
+  isWeekWeatherFetching: boolean;
+  weekWeatherResponse: ApiResponse;
 }
 
 const initialState: WeekWeatherState = {
-  weekWeatherList:[],
-  isFetching: false,
-  isFetchingSuccessful: false,
-  response: {
-    status: 0,
-    message: "",
-  },
+  weekWeatherList: [],
+  isWeekWeatherFetching: true,
+  weekWeatherResponse: { ...defaultApiResponse },
 };
 
 export const weekWeatherSlice = createSlice({
   name: "weekWeather",
   initialState,
   reducers: {
-    setIsWeekWeatherFetching: (state: WeekWeatherState, action: PayloadAction<boolean>) => {
-      state.isFetching = action.payload;
+    setIsWeekWeatherFetching: (
+      state: WeekWeatherState,
+      action: PayloadAction<boolean>
+    ) => {
+      state.isWeekWeatherFetching = action.payload;
     },
     setWeekWeather: (
       state: WeekWeatherState,
       action: PayloadAction<DayWeather[]>
     ) => {
-        state.weekWeatherList = action.payload;
-    }
+      state.weekWeatherList = action.payload;
+    },
+    setWeekWeatherResponse: (
+      state: WeekWeatherState,
+      action: PayloadAction<ApiResponse>
+    ) => {
+      state.weekWeatherResponse = action.payload;
+    },
   },
 });
 
 export const {
   setIsWeekWeatherFetching,
-  setWeekWeather
+  setWeekWeather,
+  setWeekWeatherResponse,
 } = weekWeatherSlice.actions;
 
 export default weekWeatherSlice.reducer;

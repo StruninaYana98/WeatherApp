@@ -5,10 +5,6 @@ export class LocationApi {
     baseURL: "https://timezoneapi.io/api/",
   });
 
-  private static countriesnowApi = axios.create({
-    baseURL: "https://countriesnow.space/api/v0.1/",
-  });
-
   static async getCurrentLocation() {
     try {
       return await LocationApi.timezoneApi.get(
@@ -19,18 +15,6 @@ export class LocationApi {
       return null;
     }
   }
-
- /* static async getCountryCities(country: string) {
-    var data = {
-      country: country,
-    };
-    try {
-      return await LocationApi.countriesnowApi.post("countries/cities", data);
-    } catch (err) {
-      console.warn(err);
-      return null;
-    }
-  }*/
 
   static async getCountryCities(country: string) {
     const countryId = await LocationApi.getCountryId(country);
