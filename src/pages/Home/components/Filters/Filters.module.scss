@@ -28,6 +28,7 @@
     button, a{
         margin-bottom: 1rem;
         text-decoration: none;
+        text-align: center;
     }
 
     .cancel{
@@ -52,4 +53,11 @@
         }
     }
     
+}
+
+.loaderWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20vh;
 }

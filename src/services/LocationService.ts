@@ -5,8 +5,7 @@ import {
   setCountryCities,
   setCurrenLocation,
   setIsCitiesFetching,
-  setIsCurrentLocationFetching,
-  setCurrentCity
+  setIsCurrentLocationFetching
 } from "../store/slices/locationSlice";
 import { Location } from "../types/Location";
 

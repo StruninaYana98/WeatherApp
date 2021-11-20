@@ -31,6 +31,9 @@ export const currentWeatherSlice = createSlice({
   initialState,
   reducers: {
     setIsCurrentWeatherFetching: (state: CurrentWeatherState, action: PayloadAction<boolean>) => {
+      if(action.payload){
+        state.isFetchingSuccessful = false;
+      }
       state.isFetching = action.payload;
     },
     setCurrentWeather: (
@@ -38,7 +41,7 @@ export const currentWeatherSlice = createSlice({
       action: PayloadAction<CurrentWeather>
     ) => {
         state.weather = action.payload;
-      
+        state.isFetchingSuccessful = true;
     }
   },
 });
