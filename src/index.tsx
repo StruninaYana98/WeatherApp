@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeProvider>
         <Provider store={store}>
         <Header/>

@@ -27,7 +27,7 @@ function App() {
   
   return (
     <div className="appContainer">
-      <Routes >
+      <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/detailed-week-forecast" element={<DetailedWeekForecast />} />
       </Routes>
