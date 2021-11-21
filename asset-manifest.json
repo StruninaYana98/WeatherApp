@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "https://struninayana98.github.io/WeatherApp/static/css/main.41a88653.chunk.css",
-    "main.js": "https://struninayana98.github.io/WeatherApp/static/js/main.db66f8d9.chunk.js",
-    "main.js.map": "https://struninayana98.github.io/WeatherApp/static/js/main.db66f8d9.chunk.js.map",
+    "main.js": "https://struninayana98.github.io/WeatherApp/static/js/main.1cfa6704.chunk.js",
+    "main.js.map": "https://struninayana98.github.io/WeatherApp/static/js/main.1cfa6704.chunk.js.map",
     "runtime-main.js": "https://struninayana98.github.io/WeatherApp/static/js/runtime-main.7c0add1a.js",
     "runtime-main.js.map": "https://struninayana98.github.io/WeatherApp/static/js/runtime-main.7c0add1a.js.map",
     "static/css/2.3c526f5d.chunk.css": "https://struninayana98.github.io/WeatherApp/static/css/2.3c526f5d.chunk.css",
-    "static/js/2.aa8d5fd0.chunk.js": "https://struninayana98.github.io/WeatherApp/static/js/2.aa8d5fd0.chunk.js",
-    "static/js/2.aa8d5fd0.chunk.js.map": "https://struninayana98.github.io/WeatherApp/static/js/2.aa8d5fd0.chunk.js.map",
+    "static/js/2.0b1183b0.chunk.js": "https://struninayana98.github.io/WeatherApp/static/js/2.0b1183b0.chunk.js",
+    "static/js/2.0b1183b0.chunk.js.map": "https://struninayana98.github.io/WeatherApp/static/js/2.0b1183b0.chunk.js.map",
     "index.html": "https://struninayana98.github.io/WeatherApp/index.html",
     "static/css/2.3c526f5d.chunk.css.map": "https://struninayana98.github.io/WeatherApp/static/css/2.3c526f5d.chunk.css.map",
     "static/css/main.41a88653.chunk.css.map": "https://struninayana98.github.io/WeatherApp/static/css/main.41a88653.chunk.css.map",
-    "static/js/2.aa8d5fd0.chunk.js.LICENSE.txt": "https://struninayana98.github.io/WeatherApp/static/js/2.aa8d5fd0.chunk.js.LICENSE.txt",
+    "static/js/2.0b1183b0.chunk.js.LICENSE.txt": "https://struninayana98.github.io/WeatherApp/static/js/2.0b1183b0.chunk.js.LICENSE.txt",
     "static/media/app-icon.9705395a.svg": "https://struninayana98.github.io/WeatherApp/static/media/app-icon.9705395a.svg",
     "static/media/cancel.7df26920.svg": "https://struninayana98.github.io/WeatherApp/static/media/cancel.7df26920.svg",
     "static/media/clear.206e2bf8.svg": "https://struninayana98.github.io/WeatherApp/static/media/clear.206e2bf8.svg",
@@ -38,8 +38,8 @@
   "entrypoints": [
     "static/js/runtime-main.7c0add1a.js",
     "static/css/2.3c526f5d.chunk.css",
-    "static/js/2.aa8d5fd0.chunk.js",
+    "static/js/2.0b1183b0.chunk.js",
     "static/css/main.41a88653.chunk.css",
-    "static/js/main.db66f8d9.chunk.js"
+    "static/js/main.1cfa6704.chunk.js"
   ]
 }
