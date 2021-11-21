@@ -9,7 +9,7 @@ import {
   setIsCurrentLocationFetching,
 } from "../store/slices/locationSlice";
 import { Location } from "../types/Location";
-import {parceApiRespToCities, parceAxiosResponseToApiResponse } from "../helpers/Parcers";
+import {parseApiRespToCities, parseAxiosResponseToApiResponse } from "../helpers/Parsers";
 
 export class LocationService {
   static getCurrentLocation = () => async (
@@ -18,7 +18,7 @@ export class LocationService {
     dispatch(setIsCurrentLocationFetching(true));
 
     const res = await LocationApi.getCurrentLocation();
-    dispatch(setCurrentLocationResponse(parceAxiosResponseToApiResponse(res)));
+    dispatch(setCurrentLocationResponse(parseAxiosResponseToApiResponse(res)));
 
     if (res && res.status === 200) {
       let location: Location = {
@@ -52,12 +52,12 @@ export class LocationService {
     dispatch(setIsCitiesFetching(true));
 
     const res = await LocationApi.getCountryCities(country);
-    dispatch(setCountryCitiesResponse(parceAxiosResponseToApiResponse(res)))
+    dispatch(setCountryCitiesResponse(parseAxiosResponseToApiResponse(res)))
 
     let cities: Location[] = [];
 
     if (res && res.status == 200) {
-      cities = parceApiRespToCities(res);
+      cities = parseApiRespToCities(res);
     }
 
     dispatch(setCountryCities(cities));

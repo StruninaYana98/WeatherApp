@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosResponse } from "axios";
 import { act } from "react-dom/test-utils";
-import { parceApiRespToWeather } from "../../helpers/Parcers";
+import { parseApiRespToWeather } from "../../helpers/Parsers";
 import { ApiResponse, defaultApiResponse } from "../../types/ApiResponse";
 import { CurrentWeather, defaultWeather } from "../../types/Weather";
 

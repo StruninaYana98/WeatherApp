@@ -44,7 +44,12 @@ export type DayWeather = {
   min_temp: string;
   max_temp: string;
   day_temp: string;
+  feels_like_day_temp:string;
+  feels_like_night_temp:string;
   night_temp: string;
+  humidity: string;
+  clouds:string;
+  prob_of_precipitation: string;
   weatherId: number;
   logo: {
     scope: string;

@@ -1,0 +1,112 @@
+.detailedDayWrapper{
+   border:var(--border-second);
+   border-radius: 0.5rem;
+   padding:3rem;
+   margin-bottom: 3rem;
+   display: flex;
+   align-items: flex-start;
+
+   @media screen and (max-width:768px) {
+       flex-direction: column; 
+       align-items: stretch;
+   }
+
+   @media screen and (max-width:550px) {
+        padding:1.5rem;
+    }
+}
+
+.mainInformation{
+    background-image: var(--theme-prime);
+    border: var(--border-prime);
+    color:var(--theme-base);
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    padding:2rem;
+    min-width: 12rem;
+    width: 20%;
+
+    @media screen and (max-width:768px) {
+        width: auto;
+        margin-bottom: 2rem;
+    }
+
+    @media screen and (max-width:550px) {
+        padding:1.5rem;
+        min-width: unset;
+    }
+    
+
+    p{
+        margin:0.2rem 0;
+
+        span{
+            font-size: 1rem;
+        }
+    }
+
+    .description{
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+}
+
+.logo{
+    width:4rem;
+    height: 4rem;
+
+    object{
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.day{
+    color:var(--theme-accent);
+    font-size: 2rem;
+}
+
+.date{
+    font-size: 1.5rem;
+}
+
+.detailedInformation{
+    padding: 0rem 2rem;
+
+    @media screen and (max-width:768px) {
+        padding:0;
+    }
+}
+
+.parameter{
+    display: flex;
+    align-items: flex-start;
+    @media screen and (max-width:550px) {
+        flex-wrap: wrap;
+        margin-left: 2rem;
+    }
+    
+
+    .logo{
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.5rem;
+        border-radius: 0.5rem;
+    }
+    p{
+        margin: 0.7rem 0;
+    }
+
+}
+
+.nameWrapper{
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    color:var(--theme-accent);
+    @media screen and (max-width:550px) {
+        margin-left: -2rem;
+    }
+}
+
+

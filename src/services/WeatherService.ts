@@ -1,12 +1,14 @@
+import { parseApiRespTo16DaysWeather } from '../helpers/Parsers';
 import axios, { AxiosResponse } from "axios";
 import { WeatherApi } from "../apis/WeatherApi";
-import { parceApiRespToHourlyWeather, parceApiRespToWeather, parceApiRespToWeekWeather, parceAxiosResponseToApiResponse } from "../helpers/Parcers";
+import { parseApiRespToHourlyWeather, parseApiRespToWeather, parseApiRespToWeekWeather, parseAxiosResponseToApiResponse } from "../helpers/Parsers";
 import {
   setIsCurrentWeatherFetching,
   setCurrentWeather,
   setCurrentWeatherResponse,
 } from "../store/slices/currentWeatherSlice";
 import { setIsHourlyWeatherFetching, setHourlyWeather, setHourlyWeatherResponse } from "../store/slices/hourlyWeatherSlice";
+import { setIsWeatherFor16DaysFetching, setWeatherFor16Days, setWeatherFor16DaysResponse } from "../store/slices/weatherFor16DaysSlice";
 import { setIsWeekWeatherFetching, setWeekWeather, setWeekWeatherResponse  } from "../store/slices/weekWeatherSlice";
 import { AppDispatch } from "../store/store";
 import { Coordinates } from "../types/Location";
@@ -27,10 +29,10 @@ export class WeatherService {
       res = await WeatherApi.getCurrentWeatherByCoordinates(location);
     }
 
-    dispatch(setCurrentWeatherResponse(parceAxiosResponseToApiResponse(res)))
+    dispatch(setCurrentWeatherResponse(parseAxiosResponseToApiResponse(res)))
     
     if (res && res.status === 200) {
-      let weather = parceApiRespToWeather(res);
+      let weather = parseApiRespToWeather(res);
       dispatch(setCurrentWeather(weather));
       dispatch(setIsCurrentWeatherFetching(false));
       return weather;
@@ -47,10 +49,10 @@ export class WeatherService {
     dispatch(setIsWeekWeatherFetching(true));
 
     let res= await WeatherApi.getWeekWeatherByCoordinates(location);
-    dispatch(setWeekWeatherResponse(parceAxiosResponseToApiResponse(res)));
+    dispatch(setWeekWeatherResponse(parseAxiosResponseToApiResponse(res)));
     
     if (res && res.status === 200) {
-      let weekWeather = parceApiRespToWeekWeather(res);
+      let weekWeather = parseApiRespToWeekWeather(res);
       dispatch(setWeekWeather(weekWeather));
       dispatch(setIsWeekWeatherFetching(false));
       return weekWeather;
@@ -67,10 +69,10 @@ export class WeatherService {
     dispatch(setIsHourlyWeatherFetching(true));
 
     let res = await WeatherApi.getHourlyWeatherByCoordinates(location);
-    dispatch(setHourlyWeatherResponse(parceAxiosResponseToApiResponse(res)));
+    dispatch(setHourlyWeatherResponse(parseAxiosResponseToApiResponse(res)));
     
     if (res && res.status === 200) {
-      let hourlyWeather = parceApiRespToHourlyWeather(res);
+      let hourlyWeather = parseApiRespToHourlyWeather(res);
       dispatch(setHourlyWeather(hourlyWeather));
       dispatch(setIsHourlyWeatherFetching(false));
       return hourlyWeather;
@@ -79,5 +81,23 @@ export class WeatherService {
       return []
     }
 
+  }
+
+  static getWeatherFor16Days = (location:Coordinates) =>async(
+    dispatch: AppDispatch
+  ):Promise<DayWeather[]>=>{
+    dispatch(setIsWeatherFor16DaysFetching(true));
+    let res = await WeatherApi.getWeatherFor16Days(location);
+    dispatch(setWeatherFor16DaysResponse(parseAxiosResponseToApiResponse(res)));
+
+    if(res && res.status===200){
+      let weatherFor16Days = parseApiRespTo16DaysWeather(res);
+      dispatch(setWeatherFor16Days(weatherFor16Days));
+      dispatch(setIsWeatherFor16DaysFetching(false));
+      return weatherFor16Days;
+    }else{
+      dispatch(setIsWeatherFor16DaysFetching(false));
+      return []
+    }
   }
 }

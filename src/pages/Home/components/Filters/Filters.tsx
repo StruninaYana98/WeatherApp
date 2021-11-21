@@ -27,15 +27,15 @@ export const Filters = (props: Props) => {
                 <div className={s.periods}>
                     <button className={`button-second  ${FilterMode.HOURLY == filterMode ? "active" : ""}`} onClick={() => setFilterMode(FilterMode.HOURLY)}>next 48 hours</button>
                     <button className={`button-second  ${FilterMode.WEEK == filterMode ? "active" : ""}`} onClick={() => setFilterMode(FilterMode.WEEK)}>next week</button>
-                    <NavLink to="/month-statistic" className={`button-second  ${FilterMode.FOR_16_DAYS == filterMode ? "active" : ""}`} onClick={() => setFilterMode(FilterMode.FOR_16_DAYS)}>next 16 days</NavLink>
                 </div>
             </div>
-            {FilterMode.WEEK == filterMode ?
-                <WeekWeather /> : null
-            }
             {FilterMode.HOURLY == filterMode ?
                 <HourlyWeather /> : null
             }
+            {FilterMode.WEEK == filterMode ?
+                <WeekWeather /> : null
+            }
+
         </div>
     )
 }

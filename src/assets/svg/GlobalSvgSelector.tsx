@@ -13,11 +13,14 @@ import HeavySnow from './weather/heavy-snow.svg';
 import { ReactComponent as Temperature } from './parameters/temperature.svg';
 import { ReactComponent as Pressure } from './parameters/pressure.svg';
 import { ReactComponent as Humidity } from './parameters/humidity.svg';
+import { ReactComponent as Uvi } from './parameters/uvi.svg';
+import { ReactComponent as Cloudiness } from './parameters/cloudiness.svg';
+import { ReactComponent as Precipitation } from "./parameters/precipitation.svg";
 import { ReactComponent as Wind } from './parameters/wind.svg';
-import {ReactComponent as Cancel} from './global/cancel.svg';
-import {ReactComponent as AppIcon} from './global/app-icon.svg';
-import {ReactComponent as Location} from './global/location.svg';
-import {ReactComponent as Error} from './global/error.svg';
+import { ReactComponent as Cancel } from './global/cancel.svg';
+import { ReactComponent as AppIcon } from './global/app-icon.svg';
+import { ReactComponent as Location } from './global/location.svg';
+import { ReactComponent as Error } from './global/error.svg';
 
 interface Props {
     scope: string;
@@ -31,13 +34,13 @@ export const GlobalSvgSelector = ({ scope, name }: Props) => {
         case "global":
             switch (name) {
                 case "cancel":
-                    return <Cancel/>
+                    return <Cancel />
                 case "app-icon":
-                    return <AppIcon/>
+                    return <AppIcon />
                 case "location":
-                    return <Location/>
+                    return <Location />
                 case "error":
-                    return <Error/>
+                    return <Error />
                 default:
                     return null;
             }
@@ -78,7 +81,12 @@ export const GlobalSvgSelector = ({ scope, name }: Props) => {
                     return <Humidity />
                 case "wind":
                     return <Wind />
-
+                case "uvi":
+                    return <Uvi />
+                case "cloudiness":
+                    return <Cloudiness />
+                case "precipitation":
+                    return <Precipitation />
                 default:
                     return null;
             }

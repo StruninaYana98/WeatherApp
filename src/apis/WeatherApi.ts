@@ -68,6 +68,7 @@ export class WeatherApi {
     }
   }
 
+  //unavaliable with my openweathermap plan
   static async getWeatherFor16Days(coord: Coordinates){
     try{
       return await WeatherApi.weatherApi.get(
