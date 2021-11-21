@@ -2,21 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './styles/index.scss';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { ThemeProvider } from './providers/ThemeProvider';
 import { Header } from './shared/Header/Header';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <ThemeProvider>
         <Provider store={store}>
-        <Header/>
-        <App />
+          <Header />
+          <App />
         </Provider>
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
